@@ -1,13 +1,16 @@
 # See http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:file:./data/test
     username: test
     password: test
     driver-class-name: org.h2.Driver
   h2:
     console:
       enabled: true
+      settings:
+        trace: false
+        web-allow-others: false
   thymeleaf:
     cache: false
 logging:
