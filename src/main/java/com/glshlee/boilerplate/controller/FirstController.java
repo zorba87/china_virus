@@ -1,4 +1,4 @@
-package com.glshlee.boilerplate;
+package com.glshlee.boilerplate.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ public class FirstController{
     @RequestMapping("/")
     public String FirstMainMiew(Model model){
         model.addAttribute("message", "Hi, you guys");
-        return "view"; 
+        return "main"; 
     } 
     
     @RequestMapping(value="first",method=RequestMethod.GET)
