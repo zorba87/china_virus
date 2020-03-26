@@ -1,24 +1,38 @@
 package com.glshlee.boilerplate;
 
-import org.junit.Assert;
+import com.glshlee.boilerplate.controller.FirstController;
+
+import org.assertj.core.api.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@WebMvcTest(controllers = FirstController.class )
+
 public class HelloControllerTest {
 
     @Autowired
     TestRestTemplate testRestTemplate;
+    @Autowired
+    private MockMvc mvc;
 
+    
     @Test
     public void testHello() throws Exception {
-        String result = testRestTemplate.getForObject("/", String.class);
-        Assert.assertEquals("Hello World!", result);
+        
+        String str = "hihi test";
+        mvc.perform(get("/hello")).andExpect(status().isOk());
+        //String result = testRestTemplate.getForObject("/", String.class);
+        // Assert..("Hello World!", result);
     }
 
     @Test
@@ -33,3 +47,4 @@ public class HelloControllerTest {
         // .body("answer", is(300));
     }
 }
+
