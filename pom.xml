@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.glshlee</groupId>
-    <artifactId>webapp-boilerplate</artifactId>
+    <artifactId>china-virus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Spring Boot Blank Project (from https://github.com/making/spring-boot-blank)</name>
+    <name>China Virus Project</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
