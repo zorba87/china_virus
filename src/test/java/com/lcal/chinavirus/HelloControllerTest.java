@@ -1,4 +1,4 @@
-package com.glshlee.boilerplate;
+package com.lcal.chinavirus;
 
 import org.junit.Assert;
 import org.junit.Test;

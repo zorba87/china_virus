@@ -1,6 +1,6 @@
-package com.glshlee.boilerplate.repository;
+package com.lcal.chinavirus.repository;
 
-import com.glshlee.boilerplate.entity.Member;
+import com.lcal.chinavirus.entity.Member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
