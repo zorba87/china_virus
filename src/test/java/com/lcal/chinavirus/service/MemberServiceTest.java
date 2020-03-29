@@ -1,7 +1,7 @@
-package com.glshlee.boilerplate.service;
+package com.lcal.chinavirus.service;
 
 
-import com.glshlee.boilerplate.entity.Member;
+import com.lcal.chinavirus.entity.Member;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

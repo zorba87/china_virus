@@ -1,9 +1,9 @@
-package com.glshlee.boilerplate.service;
+package com.lcal.chinavirus.service;
 
 import java.util.List;
 
-import com.glshlee.boilerplate.entity.Member;
-import com.glshlee.boilerplate.repository.MemberRepository;
+import com.lcal.chinavirus.entity.Member;
+import com.lcal.chinavirus.repository.MemberRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

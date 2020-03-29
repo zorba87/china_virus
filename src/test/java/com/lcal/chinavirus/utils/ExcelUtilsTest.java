@@ -1,4 +1,4 @@
-package com.glshlee.boilerplate.utils;
+package com.lcal.chinavirus.utils;
 
 import java.io.File;
 import java.io.IOException;

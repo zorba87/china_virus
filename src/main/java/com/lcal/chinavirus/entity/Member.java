@@ -1,4 +1,4 @@
-package com.glshlee.boilerplate.entity;
+package com.lcal.chinavirus.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
