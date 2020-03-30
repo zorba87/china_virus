@@ -1,4 +1,4 @@
-package com.glshlee.boilerplate.controller;
+package com.lcal.chinavirus.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package com.glshlee.boilerplate;
+package com.lcal.chinavirus;
 
 import com.glshlee.boilerplate.controller.FirstController;
 

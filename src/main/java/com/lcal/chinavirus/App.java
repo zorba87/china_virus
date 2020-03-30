@@ -1,4 +1,4 @@
-package com.glshlee.boilerplate;
+package com.lcal.chinavirus;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
