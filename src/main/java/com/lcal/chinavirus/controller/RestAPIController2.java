@@ -40,9 +40,13 @@ public class RestAPIController2 {
    }
 
    @GetMapping("/apitest3")
-   public void getExcel() {
+   public JSONObject getExcel() {
       String url = "https://www.mohw.go.kr/react/popup_200128.html";
       // restTemplate.getForObject(url,);
+      JSONObject obj=    restTemplate.getForObject(url,JSONObject.class);
+      System.out.println(obj);
+
+      return obj;
    }
 
 }

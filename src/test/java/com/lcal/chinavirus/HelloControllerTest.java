@@ -1,7 +1,7 @@
 package com.lcal.chinavirus;
 
-import com.glshlee.boilerplate.controller.FirstController;
 
+import com.lcal.chinavirus.controller.FirstController;
 import org.assertj.core.api.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

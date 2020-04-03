@@ -19,5 +19,9 @@ public class FirstController{
     public void setFirstMainView() {
 
     }
+    @GetMapping({"/excel", "/Excel"})
+    public String excelLoad(){
 
+        return "ExcelFileImportButtonTest";
+    }
 }
