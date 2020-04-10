@@ -52,7 +52,7 @@ public class HospitalService {
         return result = str.toString();
     }
 
-    public JSONObject excelToJsonList(){
+    public JSONObject excelToJsonFormat(){
         JSONObject object =null ;
 
         return object;

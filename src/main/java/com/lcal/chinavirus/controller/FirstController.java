@@ -27,17 +27,21 @@ public class FirstController{
 
     }
     @GetMapping({"/excel", "/Excel"})
-    public String excelLoad(){
+    public String excelLoad(Model model){
 
         //// TODO: 2020-04-07
         //1. call  hospitals file from server
         String result =  hospitalService.getExcelFileFromServer();
 
-        result.
+
         //2. get hospitls JSONObject format
-        JSONObject list = hospitalService.excelToJsonList();
+        JSONObject jsondata = hospitalService.excelToJsonFormat();
 
-
+        String test ="haha";
+        String test2 ="milion";
+        model.addAttribute("test",test);
+        model.addAttribute("test",test);
+        model.addAttribute("jsondata",jsondata);
         return "ExcelFileImportButtonTest";
     }
 }

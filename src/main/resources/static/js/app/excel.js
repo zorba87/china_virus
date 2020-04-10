@@ -3,18 +3,30 @@ var excel ={
     init : function(){
         var _this = this;
 
-        $('.load').on('click',function(){
+
+        $('.contentsLoad').on('click',function(){
             _this.load();
+
         });
     },
 
     load : function(){
-        //TODO when button is clicked...
+        $('#panel').empty();
+        var templ =  `<div>버튼클릭시 나오는 내용 추가예정..  </div>`;
+        $(templ).appendTo('#panel');
 
-        $.ajax(
 
-        );
+        $.get('excelNewVersion',param,function(data){
+            var param ={
+                 FileVersion :"1.0"
+            }
+
+            console.log(data);
+            var jsonData = data;
+//            $('#panel').appendTo(jsonData);
+        });
     }
+
 };
 
 
