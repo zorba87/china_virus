@@ -1,5 +1,9 @@
 package com.lcal.chinavirus.controller;
 
+import com.lcal.chinavirus.service.HospitalService;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.h2.util.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class FirstController{
-    
+
+    @Autowired
+    HospitalService hospitalService;
+
     @GetMapping("/hello")
     public String FirstMainMiew(Model model){
         model.addAttribute("message", "Hi, you guys");
@@ -21,6 +28,15 @@ public class FirstController{
     }
     @GetMapping({"/excel", "/Excel"})
     public String excelLoad(){
+
+        //// TODO: 2020-04-07
+        //1. call  hospitals file from server
+        String result =  hospitalService.getExcelFileFromServer();
+
+        result.
+        //2. get hospitls JSONObject format
+        JSONObject list = hospitalService.excelToJsonList();
+
 
         return "ExcelFileImportButtonTest";
     }
