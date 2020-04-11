@@ -3,15 +3,15 @@ package com.lcal.chinavirus.controller;
 import java.util.Collections;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.h2.util.json.JSONObject;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+@Slf4j
 @RestController
 public class RestAPIController2 {
 
@@ -40,9 +40,26 @@ public class RestAPIController2 {
    }
 
    @GetMapping("/apitest3")
-   public void getExcel() {
+   public JSONObject getExcel() {
       String url = "https://www.mohw.go.kr/react/popup_200128.html";
       // restTemplate.getForObject(url,);
+      JSONObject obj=    restTemplate.getForObject(url,JSONObject.class);
+      System.out.println(obj);
+
+      return obj;
    }
 
+   @GetMapping("/excelNewVersion")
+   public boolean getExcelFile(@RequestParam("FileVersion") String FileVersion){
+      try {
+         log.info("well?=========="+FileVersion);
+         //todo
+//         return service.isBrandnewCheck();
+         return true;
+
+      }catch(Exception e){
+        e.printStackTrace();
+        return false;
+      }
+   }
 }
