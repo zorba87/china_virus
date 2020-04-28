@@ -1,23 +1,29 @@
 package com.lcal.chinavirus.service;
 
-import com.lcal.chinavirus.entity.Data;
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
-public class Covid19ScreeningCenterDataUpdateService implements DataUpdateService {
+import com.lcal.chinavirus.entity.ScreeningCenter;
+
+public class Covid19ScreeningCenterDataUpdateService implements ScreeningCenterDataUpdateService {
 
     @Override
-    public Data loadData() {
+    public List<ScreeningCenter> loadData() {
         // TODO download file
 
-        // TODO parsing
-
         // TODO return
-        return null;
+        return getScreeningCenters(null);
     }
 
     @Override
-    public void updateData(Data data) {
-        // TODO Auto-generated method stub
+    public void updateData(List<ScreeningCenter> datas) {
+        // TODO impl
 
     }
 
+    private List<ScreeningCenter> getScreeningCenters(File file) {
+        
+        return Collections.emptyList();
+    }
 }
