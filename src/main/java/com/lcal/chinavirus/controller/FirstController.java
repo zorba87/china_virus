@@ -17,7 +17,6 @@ public class FirstController{
     
     @RequestMapping(value="first",method=RequestMethod.GET)
     public void setFirstMainView() {
-
     }
 
 }
