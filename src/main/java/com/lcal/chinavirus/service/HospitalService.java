@@ -1,29 +1,34 @@
-package com.lcal.chinavirus.utils;
+package com.lcal.chinavirus.service;
+
+import com.lcal.chinavirus.utils.ExcelUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.h2.util.json.JSONObject;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.junit.Assert;
-import org.junit.Test;
-
-import lombok.extern.slf4j.Slf4j;
-
 @Slf4j
-public class ExcelUtilsTest {
+@Service
+public class HospitalService {
 
-    @Test
-    public void testReadExcelFile() {
+
+    public String getExcelFileFromServer(){
         Path resourceDirectory = Paths.get("src", "test", "resources", "선별진료소목록.xlsx");
         File file = resourceDirectory.toFile();
 
         log.info(file.getAbsolutePath());
+
+        String result= "";
+        StringBuilder str = new StringBuilder();
 
         try {
             XSSFWorkbook workbook = ExcelUtils.readExcelFile(file);
@@ -31,16 +36,25 @@ public class ExcelUtilsTest {
 
             List<Row> rows = ExcelUtils.getAllRow(sheet);
 
+            List<Object[]> list = new ArrayList<>();
+
             for (Row row : rows) {
-                StringBuilder str = new StringBuilder();
                 for (int i=0; i<row.getPhysicalNumberOfCells(); i++) {
                     str.append(row.getCell(i).getStringCellValue()).append(" ");
                 }
-                // log.info(str.toString());
+                log.info(str.toString());
             }
+
         } catch (InvalidFormatException | IOException e) {
             e.printStackTrace();
-            Assert.fail();
         }
+
+        return result = str.toString();
+    }
+
+    public JSONObject excelToJsonFormat(){
+        JSONObject object =null ;
+
+        return object;
     }
 }

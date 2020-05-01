@@ -123,3 +123,6 @@ buildNumber.properties
 #IntelliJ
 .idea
 .iml
+
+### h2DB ###
+data
