@@ -1,4 +1,4 @@
-package com.lcal.chinavirus;
+package com.lcal.chinavirus.controller;
 
 
 import com.lcal.chinavirus.controller.FirstController;

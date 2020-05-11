@@ -13,15 +13,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class FirstController{
 
-    @Autowired
-    HospitalService hospitalService;
+//    @Autowired
+//    HospitalService hospitalService;
 
     @GetMapping("/hello")
-    public String FirstMainMiew(Model model){
+    public String FirstMainView(Model model){
         model.addAttribute("message", "Hi, you guys");
         return "main"; 
-    } 
-    
+    }
+    @GetMapping("/hello2")
+    public String test(){
+        return "main";
+    }
     @RequestMapping(value="first",method=RequestMethod.GET)
     public void setFirstMainView() {
 
@@ -31,17 +34,17 @@ public class FirstController{
 
         //// TODO: 2020-04-07
         //1. call  hospitals file from server
-        String result =  hospitalService.getExcelFileFromServer();
+//        String result =  hospitalService.getExcelFileFromServer();
 
 
         //2. get hospitls JSONObject format
-        JSONObject jsondata = hospitalService.excelToJsonFormat();
+//        JSONObject jsondata = hospitalService.excelToJsonFormat();
 
         String test ="haha";
         String test2 ="milion";
         model.addAttribute("test",test);
         model.addAttribute("test",test);
-        model.addAttribute("jsondata",jsondata);
+//        model.addAttribute("jsondata",jsondata);
         return "ExcelFileImportButtonTest";
     }
 }
