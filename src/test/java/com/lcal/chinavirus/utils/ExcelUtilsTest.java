@@ -36,10 +36,10 @@ public class ExcelUtilsTest {
                 for (int i=0; i<row.getPhysicalNumberOfCells(); i++) {
                     str.append(row.getCell(i).getStringCellValue()).append(" ");
                 }
-                log.info(str.toString());
+                // log.info(str.toString());
             }
-
         } catch (InvalidFormatException | IOException e) {
+            e.printStackTrace();
             Assert.fail();
         }
     }
