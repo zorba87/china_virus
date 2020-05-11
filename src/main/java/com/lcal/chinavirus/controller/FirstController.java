@@ -24,7 +24,6 @@ public class FirstController{
     
     @RequestMapping(value="first",method=RequestMethod.GET)
     public void setFirstMainView() {
-
     }
     @GetMapping({"/excel", "/Excel"})
     public String excelLoad(Model model){
