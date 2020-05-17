@@ -15,8 +15,4 @@ public class MapController {
         return "MapInfoFromClient";
     }
 
-    @GetMapping("/test")
-    public String mapTest(){
-        return "MapTest";
-    }
 }
