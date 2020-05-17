@@ -1,15 +1,22 @@
 package com.lcal.chinavirus.controller;
 
-import java.util.Collections;
-import java.util.Map;
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.h2.util.json.JSONObject;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -39,27 +46,29 @@ public class RestAPIController2 {
       return obj;
    }
 
-   @GetMapping("/apitest3")
-   public JSONObject getExcel() {
-      String url = "https://www.mohw.go.kr/react/popup_200128.html";
-      // restTemplate.getForObject(url,);
-      JSONObject obj=    restTemplate.getForObject(url,JSONObject.class);
-      System.out.println(obj);
+   @GetMapping("/whatlocation")
+   public String getLocationFromXYCoordinate(@RequestParam(value="location",
+                                 defaultValue = "동작구") String location ){
 
-      return obj;
-   }
+      System.out.println("<<<<<<<<<<<  get Location  >>>>>>>>>>>>.");
 
-   @GetMapping("/excelNewVersion")
-   public boolean getExcelFile(@RequestParam("FileVersion") String FileVersion){
-      try {
-         log.info("well?=========="+FileVersion);
-         //todo
-//         return service.isBrandnewCheck();
-         return true;
+      String apiURL= "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query="+location;
+      String api_key_id = "9bt34yijp5";
+      String api_key = "yrE9lyniWQaEnHhSMd6htVRD1ackNYqKakvzSDY1";
 
-      }catch(Exception e){
-        e.printStackTrace();
-        return false;
-      }
+      HttpHeaders headers = new HttpHeaders();
+      headers.set("X-NCP-APIGW-API-KEY-ID", "9bt34yijp5");
+      headers.set("X-NCP-APIGW-API-KEY", "yrE9lyniWQaEnHhSMd6htVRD1ackNYqKakvzSDY1");
+
+      HttpEntity entity = new HttpEntity(headers);
+
+      ResponseEntity<String> response = restTemplate.exchange(apiURL, HttpMethod.GET,entity,String.class);
+//    ResponseEntity<JSONObject> response = restTemplate.exchange(apiURL, HttpMethod.GET,entity,JSONObject.class);
+
+//    JSONObject object = response.getBody();
+      String body = response.getBody();
+      System.out.println(body);
+
+      return body;
    }
 }
