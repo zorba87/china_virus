@@ -16,9 +16,15 @@ spring:
       settings:
         trace: false
         web-allow-others: false
+<<<<<<< HEAD
 #  devtools:
 #    livereload:
 #      enabled: true
+=======
+  devtools:
+    livereload:
+      enabled: false
+>>>>>>> cc220df36e7f5fafe36deadfe619974aa60c8f56
 #  handlebars:
 #    cache: false
 logging:
@@ -26,3 +32,9 @@ logging:
     jdbc:
       sqltiming: "DEBUG"
       resultsettable: "DEBUG"
+
+    org:
+      springframework:
+        boot:
+          autoconfigure: "ERROR"
+

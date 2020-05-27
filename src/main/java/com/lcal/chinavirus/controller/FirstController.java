@@ -19,15 +19,9 @@ public class FirstController{
     @GetMapping("/hello")
     public String FirstMainView(Model model){
         model.addAttribute("message", "Hi, you guys");
-        return "main"; 
-    }
-    @GetMapping("/hello2")
-    public String test(){
         return "main";
     }
-    @RequestMapping(value="first",method=RequestMethod.GET)
-    public void setFirstMainView() {
-    }
+
     @GetMapping({"/excel", "/Excel"})
     public String excelLoad(Model model){
 
