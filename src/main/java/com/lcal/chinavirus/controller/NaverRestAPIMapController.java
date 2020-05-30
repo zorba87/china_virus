@@ -1,11 +1,9 @@
 package com.lcal.chinavirus.controller;
 
-import com.google.common.io.Resources;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.h2.util.json.JSONObject;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 
 @RestController
+@Slf4j
 public class NaverRestAPIMapController {
-   static final Logger logger = LoggerFactory.getLogger(NaverRestAPIMapController.class);
+//   static final Logger logger = LoggerFactory.getLogger(NaverRestAPIMapController.class);
    static HttpComponentsClientHttpRequestFactory factory;
    static RestTemplate restTemplate;
    static final String resource = "/application-naver.properties";
@@ -56,8 +54,9 @@ public class NaverRestAPIMapController {
    @GetMapping("/whatlocation")
    public String getLocationFromXYCoordinate(@RequestParam(value="location",
                                  defaultValue = "동작구") String location ){
-      logger.warn("<<<<<<<<<<<  get Location  >>>>>>>>>>>>.");
-
+//      log.warn("<<<<<<<<<<<  get Location  >>>>>>>>>>>>.");
+       log.warn("test");
+       
       String apiURL= "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query="+location;
 
       HttpHeaders headers = new HttpHeaders();
@@ -71,7 +70,7 @@ public class NaverRestAPIMapController {
       String body = response.getBody();
       System.out.println(body);
 
-      logger.warn("<<<<<<<<<<<  out Location  >>>>>>>>>>>>.");
+//      log.warn("<<<<<<<<<<<  out Location  >>>>>>>>>>>>.");
       return body;
    }
 }

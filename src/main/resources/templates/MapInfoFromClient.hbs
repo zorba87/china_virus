@@ -12,9 +12,10 @@
     <body>
         <h1> MAP 검색 </h1>
 
+<!--
         <input type="text" id="location" placeholder="주소를 입력하세요"></input>
         <input type="button" class="location_search" value=" 검색 " > </input>
-
+-->
         <div id="map" style = "width:100%; height: 400px;"></div>
 
         <script src="/js/lib/jquery.min.js"></script>
@@ -23,50 +24,59 @@
             $(function(){
                 var x,y;
 
-                $('.location_search').click(function(){
-                    var location = $('#location').val();
-                    console.log("value ="+ location);
+                var locationBtnHtml = '<input type = "text" id="location" placeholder="동으로 검색"><span class="spr_trff spr_ico_mylct"></span></input>';
+                var searchBtnHtml = '<input type= "button" class="location_search" value="검색"/>'
 
-                    var param = {
-                        location: location
-                    };
+                var map = new naver.maps.Map('map', {
+                    useStyleMap: true,
+                    zoom: 13
+                });
+                naver.maps.Event.once(map, 'init_stylemap', function () {
+                    //0. customControl 객체 이용하기
+                    var customControl = new naver.maps.CustomControl(locationBtnHtml, {
+                        position: naver.maps.Position.TOP_LEFT
+                    });
 
-                    var progress = '<img src="../image/progress.gif">';
-                    $('#map').append(progress);
+                    var searchControl = new naver.maps.CustomControl(searchBtnHtml, {
+                        position: naver.maps.Position.TOP_LEFT
+                    });
 
-                    $.get('../whatlocation',param,function(data){
-                        console.log("type is="+typeof data);
-                        console.log(JSON.parse(data));
+                    customControl.setMap(map);
+                    searchControl.setMap(map);
 
-                        //x는 경도 y는 위도를 나타냄
-                        x = JSON.parse(data).addresses[0].x;
-                        y = JSON.parse(data).addresses[0].y;
+                    var domEventListener = naver.maps.Event.addDOMListener(searchControl.getElement(), 'click', function() {
+                        //Todo
+                        // 0.Auto suggestion
+                        // 1.search btn in textbox
+                        var location = $('#location').val();
+                        console.log("value ="+ location);
 
-                        var mapOptions = {
-                            center: new naver.maps.LatLng(y,x),
-                            zoom: 15
+                        var param = {
+                            location: location
                         };
-                        var map = new naver.maps.Map('map',mapOptions);
 
-                        var locationBtnHtml = '<input type = "text" class="btn_mylct" placeholder="동으로 검색"><span class="spr_trff spr_ico_mylct"></span></input>';
+                        var progress = '<img src="../image/progress.gif">';
+                        $('#map').append(progress);
 
-                        naver.maps.Event.once(map, 'init_stylemap', function () {
-                            //1. customControl 객체 이용하기
-                            var customControl = new naver.maps.CustomControl(locationBtnHtml, {
-                                position: naver.maps.Position.TOP_LEFT
-                            });
+                        $.get('../whatlocation',param,function(data){
+                            console.log("type is="+typeof data);
+                            console.log(JSON.parse(data));
 
-                            customControl.setMap(map);
+                            //x는 경도 y는 위도를 나타냄
+                            x = JSON.parse(data).addresses[0].x;
+                            y = JSON.parse(data).addresses[0].y;
 
-                            var domEventListener = naver.maps.Event.addDOMListener(customControl.getElement(), 'click', function() {
-                                //Todo
-                                // 1.Auto suggestion
-                                // 2.search btn in textbox
-                            });
+                            var mapOptions = {
+                                center: new naver.maps.LatLng(y,x),
+                                zoom: 15
+                            };
+                            var map = new naver.maps.Map('map',mapOptions);
 
                         });
+
                     });
                 });
+
             })
         </script>
     </body>
