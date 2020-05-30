@@ -7,19 +7,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
         <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9bt34yijp5"></script>
+
+        <!--for autocomplete -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     </head>
 
     <body>
         <h1> MAP 검색 </h1>
 
-<!--
-        <input type="text" id="location" placeholder="주소를 입력하세요"></input>
-        <input type="button" class="location_search" value=" 검색 " > </input>
--->
-        <div id="map" style = "width:100%; height: 400px;"></div>
+        <div id="map" style = "width:100%; height: 600px;"></div>
 
         <script src="/js/lib/jquery.min.js"></script>
         <script src="/js/lib/bootstrap.min.js"></script>
+        <!--for autocomplete -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
         <script>
             $(function(){
                 var x,y;
@@ -43,6 +46,20 @@
 
                     customControl.setMap(map);
                     searchControl.setMap(map);
+
+                    var availableCity = ["서울","부산","대구","광주","울산"];
+
+                    $("#location").autocomplete({
+                        source: availableCity,
+
+                        select: function(event, ui) {
+                            console.log(ui.item);
+                        },
+                        focus: function(event, ui) {
+                            return false;
+                            //event.preventDefault();
+                        }
+                    });
 
                     var domEventListener = naver.maps.Event.addDOMListener(searchControl.getElement(), 'click', function() {
                         //Todo
